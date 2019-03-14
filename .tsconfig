@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "target": "esnext",
+    "jsx": "preserve",
+    "lib": ["dom", "es2017"]
+  }
+}
