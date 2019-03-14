@@ -1,14 +1,14 @@
-import Header from '../../components/head'
+import Header from '../../components/head';
 const css = require('./index.scss');
 
 function About() {
-  return (
-    <div>
-      <Header />
-      <h2 className={css.example}>About!</h2>
-      <div></div>
-    </div>
-  )
+	return (
+		<div>
+			<Header />
+			<h2 className={css.example}>About!</h2>
+			<div />
+		</div>
+	);
 }
 
-export default About
+export default About;
