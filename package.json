@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "node server.js",
+    "dev": "nodemon server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js"
   },
@@ -10,13 +10,25 @@
     "@types/react-dom": "^16.8.2",
     "@zeit/next-sass": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
+    "bcrypt": "^3.0.5",
+    "body-parser": "^1.18.3",
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
+    "formik": "^1.5.1",
+    "isomorphic-unfetch": "^3.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.11",
     "next": "^8.0.3",
     "next-plugin-custom-babel-config": "^1.0.0",
     "node-sass": "^4.11.0",
+    "pg": "^7.9.0",
+    "pg-hstore": "^2.3.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "typescript": "^3.3.3333"
+    "sequelize": "^5.2.0",
+    "sequelize-cli": "^5.4.0",
+    "typescript": "^3.3.3333",
+    "universal-cookie": "^3.1.0"
   },
   "devDependencies": {
     "prettier": "^1.16.4",

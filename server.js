@@ -1,17 +1,17 @@
+require('dotenv').config();
 const express = require('express')
+const bodyParser = require('body-parser')
 const next = require('next')
-const initApi = require('./api')
 
 const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
+const app = next({ dev, dir: './ui' })
 const handle = app.getRequestHandler()
-    
+
 app.prepare()
 .then(() => {
   const server = express()
-
-  // use for auth before Apollo can be used
-  initApi(server)
+  server.use(bodyParser.urlencoded({ extended: true }));
+  server.use(bodyParser.json());
 
   server.get('/custom/:id', (req, res) => {
     const actualPage = '/custom'
