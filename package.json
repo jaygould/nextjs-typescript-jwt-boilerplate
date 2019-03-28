@@ -1,0 +1,38 @@
+{
+  "scripts": {
+    "server": "nodemon --inspect server.js",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "dependencies": {
+    "bcrypt": "2.0.1",
+    "body-parser": "^1.18.3",
+    "chalk": "2.4.1",
+    "compression": "^1.7.2",
+    "cors": "2.8.3",
+    "cron": "1.4.1",
+    "dotenv": "4.0.0",
+    "errorhandler": "1.5.0",
+    "express": "^4.16.3",
+    "express-jwt": "^5.3.1",
+    "express-status-monitor": "1.0.0",
+    "http": "0.0.0",
+    "https": "1.0.0",
+    "jimp": "^0.6.0",
+    "jsonwebtoken": "8.2.1",
+    "lodash": "^4.17.10",
+    "lusca": "1.5.1",
+    "morgan": "^1.9.1",
+    "path": "0.12.7",
+    "pg": "^7.4.3",
+    "pg-hstore": "^2.3.2",
+    "request": "^2.87.0",
+    "sequelize": "^5.2.3",
+    "sequelize-cli": "^5.4.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.16.4",
+    "tslint": "^5.14.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1"
+  }
+}
