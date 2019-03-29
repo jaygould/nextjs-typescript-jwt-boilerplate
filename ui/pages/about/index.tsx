@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Header from '../../components/head';
 const css = require('./index.scss');
 

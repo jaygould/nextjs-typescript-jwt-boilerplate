@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import * as React from 'react';
 import authService from '../services/auth.service';
 import { StatusConsumer } from '../services/status.context';
 
@@ -7,8 +8,7 @@ function Header() {
 		<div>
 			<StatusConsumer>
 				{globalStatus => {
-					const message = globalStatus.message.message;
-					return message ? <p>{message}</p> : null;
+					return globalStatus ? <p>{globalStatus.message}</p> : null;
 				}}
 			</StatusConsumer>
 			<button onClick={() => authService.logout()}>Log out</button>

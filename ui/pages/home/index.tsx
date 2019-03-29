@@ -1,6 +1,7 @@
 import { Field, Form, Formik, FormikActions } from 'formik';
 import Link from 'next/link';
 import Router from 'next/router';
+import * as React from 'react';
 
 import GlobalStatus from '../../components/globalStatus';
 import Header from '../../components/head';

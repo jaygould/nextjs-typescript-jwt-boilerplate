@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Header from '../../components/head';
 const css = require('./index.scss');
 
@@ -11,7 +12,7 @@ function Dashboard() {
 	);
 }
 
-Dashboard.getInitialProps = async ctx => {
+Dashboard.getInitialProps = async () => {
 	return {};
 };
 

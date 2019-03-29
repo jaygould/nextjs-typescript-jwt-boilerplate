@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
-const StatusCtx = React.createContext({});
+
+interface IGlobalStatus {
+	message: string;
+	addMessage: (message: string) => any;
+}
+const StatusCtx = React.createContext<IGlobalStatus | null>(null);
 
 class StatusProvider extends Component {
 	state = {
-		message: null
+		message: ''
 	};
 	render() {
 		return (
 			<StatusCtx.Provider
 				value={{
-					message: this.state,
+					message: this.state.message,
 					addMessage: message =>
 						this.setState({
 							message

@@ -24,7 +24,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 		pageProps = await Component.getInitialProps(ctx);
 	}
 
-	let authToken;
+	let authToken: string;
 	const cookies = new Cookies(ctx.req ? ctx.req.headers.cookie : null);
 	if (ctx.req) {
 		// server

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Header from '../../components/head';
 const css = require('./index.scss');
 
@@ -7,7 +8,7 @@ import { Field, Form, Formik, FormikActions } from 'formik';
 import authService from '../../services/auth.service';
 import { IRegisterIn } from '../../types/auth.types';
 
-function Register({ globalStatus }) {
+function Register({ globalStatus }: any) {
 	return (
 		<div>
 			<Header />
