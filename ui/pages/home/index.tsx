@@ -9,8 +9,14 @@ const css = require('./index.scss');
 
 import authService from '../../services/auth.service';
 import { ILoginIn } from '../../types/auth.types';
+import { IGlobalStatus } from '../../types/global.types';
 
-function Home({ globalStatus }) {
+interface IProps {
+	globalStatus: IGlobalStatus;
+}
+
+function Home(props: IProps) {
+	const { globalStatus } = props;
 	return (
 		<div>
 			<Header />

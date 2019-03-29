@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
+import { IGlobalStatus } from '../types/global.types';
 
-interface IGlobalStatus {
-	message: string;
-	addMessage: (message: string) => any;
-}
 const StatusCtx = React.createContext<IGlobalStatus | null>(null);
 
 class StatusProvider extends Component {

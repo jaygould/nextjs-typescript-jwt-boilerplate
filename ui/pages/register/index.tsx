@@ -7,8 +7,14 @@ import GlobalStatus from '../../components/globalStatus';
 import { Field, Form, Formik, FormikActions } from 'formik';
 import authService from '../../services/auth.service';
 import { IRegisterIn } from '../../types/auth.types';
+import { IGlobalStatus } from '../../types/global.types';
 
-function Register({ globalStatus }: any) {
+interface IProps {
+	globalStatus: IGlobalStatus;
+}
+
+function Register(props: IProps) {
+	const { globalStatus } = props;
 	return (
 		<div>
 			<Header />
