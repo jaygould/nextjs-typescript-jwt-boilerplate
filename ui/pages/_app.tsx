@@ -1,5 +1,5 @@
 import App, { Container } from 'next/app';
-import React from 'react';
+import * as React from 'react';
 import Cookies from 'universal-cookie';
 import authService from '../services/auth.service';
 import StatusProvider from '../services/status.context';
