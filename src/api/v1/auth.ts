@@ -69,7 +69,6 @@ router.post('/login', (req, res) => {
 			);
 		})
 		.catch((err: string) => {
-      console.log(err)
 			return errors.errorHandler(res, err, null);
 		});
 });
@@ -79,7 +78,7 @@ router.post('/validate', (req, res) => {
 	if (!authToken) {
 		return errors.errorHandler(res, 'No auth token.', null);
 	}
-	AuthService.validateAuthToken(authToken)
+	return AuthService.validateAuthToken(authToken)
 		.then((validated: boolean) => {
 			res.send({
 				success: true
