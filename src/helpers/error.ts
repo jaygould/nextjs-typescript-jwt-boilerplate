@@ -1,4 +1,10 @@
-const errorHandler = (res, errorMessage, errorCode) => {
+import { Response } from 'express';
+
+export const errorHandler = (
+	res: Response,
+	errorMessage: string,
+	errorCode: string | null
+) => {
 	if (errorCode === 'invalidToken' || errorCode === 'refreshExpired') {
 		return res.status(403).send({
 			success: false,
@@ -11,8 +17,4 @@ const errorHandler = (res, errorMessage, errorCode) => {
 			message: errorMessage
 		});
 	}
-};
-
-module.exports = {
-	errorHandler
 };

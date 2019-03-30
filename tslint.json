@@ -1,0 +1,30 @@
+{
+	"extends": [
+		"tslint:recommended",
+		"tslint-plugin-prettier",
+		"tslint-config-prettier"
+	],
+	"linterOptions": {
+		"exclude": [
+			"node_modules/**/*.ts"
+		]
+	},
+	"rules": {
+		"object-literal-sort-keys": false,
+		"jsx-no-lambda": false,
+		"jsx-no-multiline-js": false,
+    "no-console": false,
+    "no-var-requires": false,
+		"member-access": [
+			false
+		],
+		"prettier": [
+			true,
+			{
+				"singleQuote": true,
+				"useTabs": true,
+				"tabWidth": 1
+			}
+		]
+	}
+}
