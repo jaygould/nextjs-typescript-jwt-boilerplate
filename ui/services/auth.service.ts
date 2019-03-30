@@ -1,13 +1,21 @@
+import { Response } from 'express';
 import Router from 'next/router';
 import Cookies from 'universal-cookie';
 import fetchService from './fetch.service';
 
+import { ILoginIn, IRegisterIn } from '../types/auth.types';
+
 class AuthService {
-	public loginUser(email, password): Promise<any> {
+	public loginUser({ email, password }: ILoginIn): Promise<any> {
 		return fetchService.isofetch(`/auth/login`, { email, password }, 'POST');
 	}
 
-	public registerUser(firstName, lastName, email, password): Promise<any> {
+	public registerUser({
+		firstName,
+		lastName,
+		email,
+		password
+	}: IRegisterIn): Promise<any> {
 		return fetchService.isofetch(
 			`/auth/register`,
 			{ firstName, lastName, email, password },
@@ -15,7 +23,7 @@ class AuthService {
 		);
 	}
 
-	public checkAuthToken(authToken): Promise<any> {
+	public checkAuthToken(authToken: string): Promise<any> {
 		return fetchService.isofetch(`/auth/validate`, { authToken }, 'POST');
 	}
 
@@ -25,7 +33,7 @@ class AuthService {
 		return Promise.resolve();
 	}
 
-	public logout(): boolean {
+	public logout(): void {
 		const cookies = new Cookies();
 		cookies.remove('authToken');
 		Router.push('/home');
@@ -38,7 +46,7 @@ class AuthService {
 		return JSON.parse(window.atob(base64));
 	}
 
-	public redirectUser(dest, options) {
+	public redirectUser(dest: string, options: { res: Response; status: number }) {
 		const { res, status } = options;
 		if (res) {
 			res.writeHead(status || 302, { Location: dest });
@@ -47,12 +55,12 @@ class AuthService {
 			if (dest[0] === '/' && dest[1] !== '/') {
 				Router.push(dest);
 			} else {
-				window.location = dest;
+				window.location.href = dest;
 			}
 		}
 	}
 
-	public isAuthPage(page) {
+	public isAuthPage(page: string) {
 		if (page === '/home' || page === '/register' || page === '/about') {
 			return false;
 		} else {

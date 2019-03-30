@@ -2,7 +2,7 @@ import fetch from 'isomorphic-unfetch';
 import config from '../config';
 
 class FetchService {
-	public isofetch(url, data, type): Promise<any> {
+	public isofetch(url: string, data: object, type: string): Promise<any> {
 		return fetch(`${config.apiUrl}${url}`, {
 			body: JSON.stringify({ ...data }),
 			headers: config.configHeaders,
@@ -15,7 +15,7 @@ class FetchService {
 			});
 	}
 
-	public handleErrors(response: any): object {
+	public handleErrors(response: string): string {
 		if (response === 'TypeError: Failed to fetch') {
 			throw Error('Server error.');
 		}

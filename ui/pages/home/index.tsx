@@ -31,7 +31,7 @@ function Home(props: IProps) {
 					{ setSubmitting }: FormikActions<ILoginIn>
 				) => {
 					authService
-						.loginUser(values.email, values.password)
+						.loginUser({ email: values.email, password: values.password })
 						.then(resp => {
 							setSubmitting(false);
 							if (resp.success) {
