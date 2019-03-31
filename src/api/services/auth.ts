@@ -14,10 +14,10 @@ const loginUser = ({ email, password }: ILoginIn) => {
 		return new Promise((res, rej) => {
 			bcrypt.compare(password, user.password, (err: Error, success: boolean) => {
 				if (err) {
-					rej('The has been an unexpected error, please try again later');
+					rej(new Error('The has been an unexpected error, please try again later'));
 				}
 				if (!success) {
-					rej('Your password is incorrect.');
+					rej(new Error('Your password is incorrect.'));
 				} else {
 					res(user);
 				}

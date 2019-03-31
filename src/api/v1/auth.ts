@@ -34,7 +34,7 @@ router.post('/register', (req, res) => {
 			return res.send({ success: true });
 		})
 		.catch((err: any) => {
-			return errors.errorHandler(res, err, null);
+			return errors.errorHandler(res, err.message, null);
 		});
 });
 
@@ -68,8 +68,8 @@ router.post('/login', (req, res) => {
 				})
 			);
 		})
-		.catch((err: string) => {
-			return errors.errorHandler(res, err, null);
+		.catch((err: any) => {
+			return errors.errorHandler(res, err.message, null);
 		});
 });
 
