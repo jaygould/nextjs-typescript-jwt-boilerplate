@@ -1,9 +1,9 @@
-import { Response } from 'express';
 import Router from 'next/router';
 import Cookies from 'universal-cookie';
 import fetchService from './fetch.service';
 
 import { ILoginIn, IRegisterIn } from '../types/auth.types';
+import { IRedirectOptions } from '../types/global.types';
 
 class AuthService {
 	public loginUser({ email, password }: ILoginIn): Promise<any> {
@@ -46,8 +46,11 @@ class AuthService {
 		return JSON.parse(window.atob(base64));
 	}
 
-	public redirectUser(dest: string, options: { res: Response; status: number }) {
-		const { res, status } = options;
+	public redirectUser(dest: string, options: IRedirectOptions) {
+		const {
+			ctx: { res },
+			status
+		} = options;
 		if (res) {
 			res.writeHead(status || 302, { Location: dest });
 			res.end();

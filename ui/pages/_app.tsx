@@ -1,9 +1,9 @@
-import {Response}from 'express';
 import App, { Container } from 'next/app';
 import * as React from 'react';
 import Cookies from 'universal-cookie';
 import authService from '../services/auth.service';
 import StatusProvider from '../services/status.context';
+import { IAppContext } from '../types/global.types';
 
 class MyApp extends App {
 	render() {
@@ -19,7 +19,7 @@ class MyApp extends App {
 	}
 }
 
-MyApp.getInitialProps = async ({ Component, ctx }) => {
+MyApp.getInitialProps = async ({ Component, ctx }: IAppContext) => {
 	let pageProps = {};
 	if (Component.getInitialProps) {
 		pageProps = await Component.getInitialProps(ctx);
@@ -40,7 +40,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 		if (!authService.isAuthPage(path)) {
 			return { pageProps };
 		} else {
-			authService.redirectUser('/home', { res: ctx.res, status: 301 });
+			authService.redirectUser('/home', { ctx, status: 301 });
 		}
 	} else {
 		// await is required here to stop the rest of the page from executing
@@ -49,14 +49,14 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 			.then(auth => {
 				if (path === '/') {
 					if (auth.success) {
-						authService.redirectUser('/dashboard', { res: ctx.res, status: 301 });
+						authService.redirectUser('/dashboard', { ctx, status: 301 });
 					} else {
 						cookies.remove('authToken');
-						authService.redirectUser('/home', { res: ctx.res, status: 301 });
+						authService.redirectUser('/home', { ctx, status: 301 });
 					}
 				} else if (path === '/home') {
 					if (auth.success) {
-						authService.redirectUser('/dashboard', { res: ctx.res, status: 301 });
+						authService.redirectUser('/dashboard', { ctx, status: 301 });
 					} else {
 						return { ...pageProps, ...{ query: ctx.query, authToken } };
 					}
@@ -65,7 +65,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 						return { ...pageProps, ...{ query: ctx.query, authToken } };
 					} else {
 						cookies.remove('authToken');
-						authService.redirectUser('/home', { res: ctx.res, status: 301 });
+						authService.redirectUser('/home', { ctx, status: 301 });
 					}
 				}
 			})
