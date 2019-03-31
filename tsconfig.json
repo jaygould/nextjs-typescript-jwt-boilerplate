@@ -10,6 +10,7 @@
     "allowJs": true,
     "jsx": "react",
     "rootDir": "src",
+    // "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -18,7 +19,5 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "allowSyntheticDefaultImports": true
-
-
   }
 }

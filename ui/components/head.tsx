@@ -8,7 +8,9 @@ function Header() {
 		<div>
 			<StatusConsumer>
 				{globalStatus => {
-					return globalStatus ? <p>{globalStatus.message}</p> : null;
+					return globalStatus ? (
+						<p className="globalStatus">{globalStatus.message}</p>
+					) : null;
 				}}
 			</StatusConsumer>
 			<button onClick={() => authService.logout()}>Log out</button>
