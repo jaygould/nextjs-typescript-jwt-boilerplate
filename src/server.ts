@@ -1,5 +1,5 @@
 // Get dependencies
-import * as express from 'express';
+import express from 'express';
 const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -17,7 +17,7 @@ require('dotenv').config();
 const authApi = require('./api/v1/auth');
 
 // Create server
-const app = express();
+const app: express.Application = express();
 
 // Express configuration
 app.set('port', process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 1138);

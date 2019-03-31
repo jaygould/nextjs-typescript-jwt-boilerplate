@@ -1,4 +1,3 @@
-'use strict';
 module.exports = (sequelize: any, DataTypes: any) => {
 	const login_activity = sequelize.define(
 		'login_activity',

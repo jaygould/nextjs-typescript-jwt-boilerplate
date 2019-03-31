@@ -5,7 +5,7 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.ts')[env];
+const config = require(__dirname + '/../config/config')[env];
 const db: any = {};
 
 let sequelize: any;
@@ -24,7 +24,9 @@ fs
 	.readdirSync(__dirname)
 	.filter((file: any) => {
 		return (
-			file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.ts'
+			file.indexOf('.') !== 0 &&
+			file !== basename &&
+			(env === 'production' ? file.slice(-3) === '.js' : file.slice(-3) === '.ts')
 		);
 	})
 	.forEach((file: any) => {
