@@ -5,32 +5,27 @@ const LoginActivity = db.login_activity;
 import { IUser } from '../../types/user.types';
 
 const createAccount = (user: Partial<IUser>) => {
-	return Users.create(
-		{ raw: true },
-		{
-			firstName: user.firstName,
-			lastName: user.lastName,
-			email: user.email,
-			password: user.password
-		}
-	).then((newUser: IUser) => {
+	return Users.create({
+		firstName: user.firstName,
+		lastName: user.lastName,
+		email: user.email,
+		password: user.password
+	}).then((newUser: IUser) => {
 		return newUser;
 	});
 };
 
 const checkUserExists = (email: string) => {
-	return Users.findOne(
-		{ raw: true },
-		{
-			where: { email }
-		}
-	).then((user: IUser) => {
+	return Users.findOne({
+		raw: true,
+		where: { email }
+	}).then((user: IUser) => {
 		return user;
 	});
 };
 
 const findByRefreshToken = (refreshToken: string) => {
-	return Users.findOne({ raw: true }, { where: { refreshToken } }).then(
+	return Users.findOne({ raw: true, where: { refreshToken } }).then(
 		(res: any) => {
 			return res ? res.dataValues : null;
 		}
