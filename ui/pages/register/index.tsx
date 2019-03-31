@@ -31,12 +31,12 @@ function Register(props: IProps) {
 						{ setSubmitting }: FormikActions<IRegisterIn>
 					) => {
 						authService
-							.registerUser(
-								values.firstName,
-								values.lastName,
-								values.email,
-								values.password
-							)
+							.registerUser({
+								firstName: values.firstName,
+								lastName: values.lastName,
+								email: values.email,
+								password: values.password
+							})
 							.then(resp => {
 								setSubmitting(false);
 								if (resp.success) {
