@@ -1,6 +1,5 @@
 import { Router } from 'express';
 const router = Router();
-import bcrypt from 'bcrypt';
 import * as errors from '../../helpers/error';
 import * as AuthModel from '../models/auth';
 import * as AuthService from '../services/auth';
@@ -22,10 +21,7 @@ router.post('/register', (req, res) => {
 			if (userChecks) {
 				return errors.errorHandler(res, 'You are already registered.', null);
 			}
-			const passwordHash = bcrypt.hashSync(password.trim(), 12);
-			const newUser: Partial<IUser> = { firstName, lastName, email };
-			newUser.password = passwordHash;
-			return AuthModel.createAccount(newUser);
+			return AuthService.createUser({ firstName, lastName, email, password });
 		})
 		.then((user: IUser) => {
 			return AuthModel.logUserActivity(user.id, 'signup');

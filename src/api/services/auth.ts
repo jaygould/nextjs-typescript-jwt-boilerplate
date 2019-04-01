@@ -26,6 +26,18 @@ const loginUser = ({ email, password }: ILoginIn) => {
 	});
 };
 
+const createUser = ({
+	firstName,
+	lastName,
+	email,
+	password
+}: Partial<IUser>) => {
+	const passwordHash = password && bcrypt.hashSync(password.trim(), 12);
+	const newUser: Partial<IUser> = { firstName, lastName, email };
+	newUser.password = passwordHash;
+	return AuthModel.createAccount(newUser);
+};
+
 const createToken = (user: IUser) => {
 	return jwt.sign(_.omit(user, 'password'), authSecret, {
 		expiresIn: '10m'
@@ -84,6 +96,7 @@ const validateAuthToken = (authToken: string) => {
 
 export {
 	loginUser,
+	createUser,
 	createToken,
 	createRefreshToken,
 	validateRefreshToken,
