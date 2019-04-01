@@ -1,5 +1,6 @@
 require('dotenv').config();
 import faker from 'faker';
+import jwt from 'jsonwebtoken';
 import Cookies from 'universal-cookie';
 import AuthService from '../services/auth.service';
 
@@ -14,6 +15,10 @@ const newUser: any = {
 	email: faker.internet.email(),
 	password: faker.internet.password()
 };
+
+const fakeTokenSecret = 'winteriscoming';
+const fakeTokenValue = 'cats';
+const fakeToken = jwt.sign({ ilove: fakeTokenValue }, fakeTokenSecret);
 
 describe('Login and register', () => {
 	it('registers user', () => {
@@ -41,5 +46,10 @@ describe('Login and register', () => {
 			const authToken = cookies.get('authToken');
 			expect(authToken).toBeDefined();
 		});
+	});
+	it('creates and parses a valid jwt', () => {
+		const tokenPayload: any = jwt.verify(fakeToken, fakeTokenSecret);
+		expect(AuthService.parseJwt(fakeToken)).not.toBeFalsy();
+		expect(tokenPayload.ilove).toContain(fakeTokenValue);
 	});
 });
