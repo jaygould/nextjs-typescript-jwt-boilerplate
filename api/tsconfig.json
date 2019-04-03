@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "target": "es6",
+    "lib": ["es2017"],
+    "allowJs": true,
+    "outDir": "build",
+    "baseUrl": ".",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+  }
+}
