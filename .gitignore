@@ -2,3 +2,5 @@ node_modules
 .next
 .env
 build/
+
+.DS_Store
