@@ -20,7 +20,9 @@ function Home(props: IProps) {
 	return (
 		<div>
 			<Header />
-			<h2 className={css.example}>Welcome to Jlympics!</h2>
+			<h2 className={css.example}>
+				Welcome to the Next.js, Typescript and JWT starter project!
+			</h2>
 			<Formik
 				initialValues={{
 					email: '',

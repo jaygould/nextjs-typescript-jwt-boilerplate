@@ -1,3 +1,3 @@
 module.exports = {
-	authSecret: 'jlympics'
+	authSecret: 'mysupersecret'
 };
