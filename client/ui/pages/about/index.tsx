@@ -1,14 +1,14 @@
-import * as React from 'react';
-import Header from '../../components/head';
 const css = require('./index.scss');
+
+import PageContent from '../../components/PageContent';
+
+import * as React from 'react';
 
 function About() {
 	return (
-		<div>
-			<Header />
+		<PageContent>
 			<h2 className={css.example}>About!</h2>
-			<div />
-		</div>
+		</PageContent>
 	);
 }
 

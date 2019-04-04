@@ -1,14 +1,14 @@
 import * as React from 'react';
-import Header from '../../components/head';
+
+import PageContent from '../../components/PageContent';
+
 const css = require('./index.scss');
 
 function Dashboard() {
 	return (
-		<div>
-			<Header />
+		<PageContent>
 			<h2 className={css.example}>Dash!</h2>
-			<div />
-		</div>
+		</PageContent>
 	);
 }
 
