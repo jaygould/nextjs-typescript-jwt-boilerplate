@@ -2,10 +2,18 @@ const css = require('./Head.style.scss');
 
 import Head from 'next/head';
 import * as React from 'react';
-import authService from '../services/auth.service';
-import { StatusConsumer } from '../services/status.context';
 
-function Header() {
+import GlobalAuth from './HocGlobalAuth';
+
+import { StatusConsumer } from '../services/status.context';
+import { IGlobalAuth } from '../types/global.types';
+
+interface IProps {
+	globalAuth: IGlobalAuth;
+}
+
+function Header(props: IProps) {
+	const { globalAuth } = props;
 	return (
 		<div className={css.header}>
 			<div className={css.inner}>
@@ -13,7 +21,18 @@ function Header() {
 					<title>Next.js, Typescript and JWT boilerplate</title>
 					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				</Head>
-				<button onClick={() => authService.logout()}>Log out</button>
+				{globalAuth.isLoggedIn ? (
+					<div>
+						<p>Logged in with user: {globalAuth.email}</p>
+						<button
+							onClick={() => {
+								globalAuth.logout();
+							}}
+						>
+							Log out
+						</button>
+					</div>
+				) : null}
 				<StatusConsumer>
 					{globalStatus => {
 						return globalStatus ? (
@@ -27,4 +46,4 @@ function Header() {
 	);
 }
 
-export default Header;
+export default GlobalAuth(Header);

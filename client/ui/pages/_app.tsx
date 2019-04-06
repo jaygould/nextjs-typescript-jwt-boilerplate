@@ -1,6 +1,7 @@
 import App, { Container } from 'next/app';
 import * as React from 'react';
 import Cookies from 'universal-cookie';
+import AuthProvider from '../services/auth.context';
 import authService from '../services/auth.service';
 import StatusProvider from '../services/status.context';
 import { IAppContext } from '../types/global.types';
@@ -12,7 +13,9 @@ class MyApp extends App {
 		return (
 			<Container>
 				<StatusProvider>
-					<Component {...pageProps} />
+					<AuthProvider>
+						<Component {...pageProps} />
+					</AuthProvider>
 				</StatusProvider>
 			</Container>
 		);

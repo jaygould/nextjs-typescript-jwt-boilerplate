@@ -3,7 +3,7 @@ import { mount, shallow } from 'enzyme';
 import React from 'react';
 import AuthService from '../services/auth.service';
 
-import GlobalStatus from '../components/GlobalStatus';
+import GlobalStatus from '../components/HocGlobalStatus';
 import Home from '../pages/home/index';
 
 const incorrectUserDetails: any = {

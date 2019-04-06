@@ -1,7 +1,7 @@
 import * as React from 'react';
 const css = require('./index.scss');
 
-import GlobalStatus from '../../components/GlobalStatus';
+import GlobalStatus from '../../components/HocGlobalStatus';
 import PageContent from '../../components/PageContent';
 
 import { Field, Form, Formik, FormikActions } from 'formik';

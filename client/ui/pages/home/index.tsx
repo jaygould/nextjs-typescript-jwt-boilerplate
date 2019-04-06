@@ -6,19 +6,21 @@ import Link from 'next/link';
 import Router from 'next/router';
 import * as React from 'react';
 
-import GlobalStatus from '../../components/GlobalStatus';
+import GlobalAuth from '../../components/HocGlobalAuth';
+import GlobalStatus from '../../components/HocGlobalStatus';
 import PageContent from '../../components/PageContent';
 
 import authService from '../../services/auth.service';
 import { ILoginIn } from '../../types/auth.types';
-import { IGlobalStatus } from '../../types/global.types';
+import { IGlobalAuth, IGlobalStatus } from '../../types/global.types';
 
 interface IProps {
 	globalStatus: IGlobalStatus;
+	globalAuth: IGlobalAuth;
 }
 
 function Home(props: IProps) {
-	const { globalStatus } = props;
+	const { globalStatus, globalAuth } = props;
 	return (
 		<PageContent>
 			<div>
@@ -37,6 +39,7 @@ function Home(props: IProps) {
 								setSubmitting(false);
 								if (resp.success) {
 									authService.saveTokens(resp.authToken).then(() => {
+										globalAuth.addUserDetails({ email: values.email });
 										Router.push('/dashboard');
 									});
 								} else {
@@ -83,4 +86,14 @@ function Home(props: IProps) {
 	);
 }
 
-export default GlobalStatus(Home);
+Home.getInitialProps = async ({ Component, router, ctx }: any) => {
+	let pageProps = {};
+
+	if (Component.getInitialProps) {
+		pageProps = await Component.getInitialProps(ctx);
+	}
+
+	return { pageProps };
+};
+
+export default GlobalAuth(GlobalStatus(Home));

@@ -12,7 +12,7 @@ const GlobalStatus = (AppComponent: any) =>
 		render() {
 			return (
 				<StatusConsumer>
-					{context => <AppComponent globalStatus={context} />}
+					{context => <AppComponent {...this.props} globalStatus={context} />}
 				</StatusConsumer>
 			);
 		}

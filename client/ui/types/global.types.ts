@@ -5,6 +5,13 @@ export interface IGlobalStatus {
 	addMessage: (message: string) => any;
 }
 
+export interface IGlobalAuth {
+	isLoggedIn: boolean;
+	email: string | null;
+	addUserDetails: ({ email }: { email: string }) => void;
+	logout: () => void;
+}
+
 export interface IAppContext {
 	Component: any;
 	ctx: NextContext;
