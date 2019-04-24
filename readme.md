@@ -70,6 +70,20 @@ This `client/ui/pages/_app.tsx` file is key to structuring which pages are restr
 
 **TODO: create a config section to handle routing in order to tidy up and automate the `_app.tsx` page.**
 
+## Database migrations and seeding 
+
+In order to create new database tables, you must create a migration file in the `./src/db/migrations` directory. Creating seeder files are similar and must be added in the `./src/db/seeder` directory.
+
+As Sequelize is only compatible with Javascript and not Typescript files the usual Sequelize commnads for processing migration and seeder files will not work. Instead, I have created a script to compile the database files to JS, run the sequelize migrate and/or seed command, and then delete the temporarily compiled files.
+
+To migrate all files:
+
+`npm run migrate-db`
+
+To seed all files: 
+
+`npm run seed-db`
+
 ## Testing
 
 Jest is installed on both front and back end of the project. The front end uses Enzyme alongside Jest to test the rendering of the React components, as well as using Jest to test some of the service functions. The back end uses Jest to unit test some of the main auth functions on the server. They have separate config files and tests as the environments differ slightly.

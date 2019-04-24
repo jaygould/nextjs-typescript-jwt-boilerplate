@@ -1,7 +1,9 @@
 {
   "scripts": {
     "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts",
-    "prod": "tsc && NODE_ENV=production node ./build/server.js",
+    "migrate-db": "cd ./src/db && tsc && cd build && sequelize db:migrate && cd ../ && rimraf ./build",
+    "seed-db": "cd ./src/db && tsc && cd build && sequelize db:seed:all && cd ../ && rimraf ./build",
+    "prod": "tsc && NODE_ENV=production node ./build/src/server.js",
     "test": "jest --detectOpenHandles"
   },
   "dependencies": {
@@ -42,6 +44,7 @@
     "jest": "^24.5.0",
     "jest-cli": "^24.5.0",
     "prettier": "^1.16.4",
+    "rimraf": "^2.6.3",
     "ts-jest": "^24.0.1",
     "ts-node-dev": "^1.0.0-pre.32",
     "tslint": "^5.14.0",
