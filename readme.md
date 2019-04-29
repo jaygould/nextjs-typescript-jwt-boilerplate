@@ -74,7 +74,7 @@ This `client/ui/pages/_app.tsx` file is key to structuring which pages are restr
 
 In order to create new database tables, you must create a migration file in the `./src/db/migrations` directory. Creating seeder files are similar and must be added in the `./src/db/seeder` directory.
 
-As Sequelize is only compatible with Javascript and not Typescript files the usual Sequelize commnads for processing migration and seeder files will not work. Instead, I have created a script to compile the database files to JS, run the sequelize migrate and/or seed command, and then delete the temporarily compiled files.
+As Sequelize is only compatible with Javascript and not Typescript files the usual Sequelize commands for processing migration and seeder files will not work. Instead, I have created a script to compile the database files to JS, run the sequelize migrate and/or seed command, and then delete the temporarily compiled files.
 
 To migrate all files:
 
