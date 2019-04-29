@@ -2,6 +2,6 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "sourceMap": false,
-    "outDir": "build",
+    "outDir": "../../db-build",
   }
 }

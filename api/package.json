@@ -1,13 +1,14 @@
 {
   "scripts": {
     "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts",
-    "migrate-db": "cd ./src/db && tsc && cd build && sequelize db:migrate && cd ../ && rimraf ./build",
-    "seed-db": "cd ./src/db && tsc && cd build && sequelize db:seed:all && cd ../ && rimraf ./build",
+    "migrate-db": "cd ./src/db && tsc && cd ./../../db-build && sequelize db:migrate && cd ../ && rimraf ./db-build",
+    "seed-db": "cd ./src/db && tsc && cd ./../../db-build && sequelize db:seed:all && cd ../ && rimraf ./db-build",
     "prod": "tsc && NODE_ENV=production node ./build/src/server.js",
     "test": "jest --detectOpenHandles"
   },
   "dependencies": {
     "@types/bcrypt": "^3.0.0",
+    "@types/dotenv": "^6.1.1",
     "@types/express": "^4.16.1",
     "@types/faker": "^4.1.5",
     "@types/jest": "^24.0.11",
