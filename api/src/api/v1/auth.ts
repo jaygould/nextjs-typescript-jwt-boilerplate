@@ -19,7 +19,7 @@ router.post('/register', (req, res) => {
 	return existingUserCheck
 		.then((userChecks: ILoginIn) => {
 			if (userChecks) {
-				return errors.errorHandler(res, 'You are already registered.', null);
+				throw new Error('You are already registered');
 			}
 			return AuthService.createUser({ firstName, lastName, email, password });
 		})
