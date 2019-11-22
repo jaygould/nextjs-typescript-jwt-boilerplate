@@ -1,6 +1,6 @@
 const css = require('./PageContent.style.scss');
 
-import Header from './Head';
+import Header from './head';
 
 import * as React from 'react';
 
