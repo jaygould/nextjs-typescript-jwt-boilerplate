@@ -1,8 +1,11 @@
+import css from './index.css';
+
+import { NextPageContext } from 'next';
 import * as React from 'react';
 
-import PageContent from '../../components/PageContent';
+import TokenService from '../../services/Token.service';
 
-const css = require('./index.scss');
+import PageContent from '../../components/PageContent';
 
 function Dashboard() {
 	return (
@@ -12,7 +15,10 @@ function Dashboard() {
 	);
 }
 
-Dashboard.getInitialProps = async () => {
+Dashboard.getInitialProps = async (ctx: NextPageContext) => {
+	const tokenService = new TokenService();
+	await tokenService.authenticateTokenSsr(ctx);
+
 	return {};
 };
 

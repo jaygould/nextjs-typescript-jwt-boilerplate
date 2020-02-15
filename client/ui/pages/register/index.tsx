@@ -1,20 +1,20 @@
-import * as React from 'react';
-const css = require('./index.scss');
-
-import GlobalStatus from '../../components/HocGlobalStatus';
-import PageContent from '../../components/PageContent';
+import css from './index.css';
 
 import { Field, Form, Formik, FormikActions } from 'formik';
-import authService from '../../services/auth.service';
-import { IRegisterIn } from '../../types/auth.types';
-import { IGlobalStatus } from '../../types/global.types';
+import * as React from 'react';
 
-interface IProps {
-	globalStatus: IGlobalStatus;
-}
+import PageContent from '../../components/PageContent';
+
+import FetchService from '../../services/Fetch.service';
+import { useGlobalMessaging } from '../../services/GlobalMessaging.context';
+
+import { IRegisterIn } from '../../types/auth.types';
+
+interface IProps {}
 
 function Register(props: IProps) {
-	const { globalStatus } = props;
+	const [messageState, messageDispatch] = useGlobalMessaging();
+
 	return (
 		<PageContent>
 			<Formik
@@ -28,19 +28,32 @@ function Register(props: IProps) {
 					values: IRegisterIn,
 					{ setSubmitting }: FormikActions<IRegisterIn>
 				) => {
-					authService
-						.registerUser({
+					FetchService.isofetch(
+						'/auth/register',
+						{
 							firstName: values.firstName,
 							lastName: values.lastName,
 							email: values.email,
 							password: values.password
-						})
-						.then(resp => {
+						},
+						'POST'
+					)
+						.then(res => {
 							setSubmitting(false);
-							if (resp.success) {
-								globalStatus.addMessage('You have registered!');
+							if (res.success) {
+								messageDispatch({
+									type: 'setMessage',
+									payload: {
+										message: 'You have registered!'
+									}
+								});
 							} else {
-								globalStatus.addMessage(resp.message);
+								messageDispatch({
+									type: 'setMessage',
+									payload: {
+										message: res.message
+									}
+								});
 							}
 						})
 						.catch();
@@ -69,4 +82,4 @@ function Register(props: IProps) {
 	);
 }
 
-export default GlobalStatus(Register);
+export default Register;

@@ -1,23 +1,15 @@
-import { NextContext } from 'next';
+import { NextPageContext } from 'next';
 
 export interface IGlobalStatus {
 	message: string;
-	addMessage: (message: string) => any;
-}
-
-export interface IGlobalAuth {
-	isLoggedIn: boolean;
-	email: string | null;
-	addUserDetails: ({ email }: { email: string }) => void;
-	logout: () => void;
 }
 
 export interface IAppContext {
 	Component: any;
-	ctx: NextContext;
+	ctx: NextPageContext;
 }
 
 export interface IRedirectOptions {
-	ctx: NextContext;
+	ctx: NextPageContext;
 	status: number;
 }

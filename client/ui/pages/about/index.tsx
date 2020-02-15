@@ -1,4 +1,4 @@
-const css = require('./index.scss');
+import css from './index.css';
 
 import PageContent from '../../components/PageContent';
 

@@ -1,19 +1,17 @@
-const css = require('./Head.style.scss');
+import css from './Head.style.css';
 
 import Head from 'next/head';
 import * as React from 'react';
 
-import GlobalAuth from './HocGlobalAuth';
+import { useAuth } from '../services/Auth.context';
+import { useGlobalMessaging } from '../services/GlobalMessaging.context';
 
-import { StatusConsumer } from '../services/status.context';
-import { IGlobalAuth } from '../types/global.types';
-
-interface IProps {
-	globalAuth: IGlobalAuth;
-}
+interface IProps {}
 
 function Header(props: IProps) {
-	const { globalAuth } = props;
+	const [globalMessaging, messageDispatch] = useGlobalMessaging();
+	const [auth, authDispatch] = useAuth();
+
 	return (
 		<div className={css.header}>
 			<div className={css.inner}>
@@ -21,29 +19,18 @@ function Header(props: IProps) {
 					<title>Next.js, Typescript and JWT boilerplate</title>
 					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				</Head>
-				{globalAuth.isLoggedIn ? (
+				{auth.email ? (
 					<div>
-						<p>Logged in with user: {globalAuth.email}</p>
-						<button
-							onClick={() => {
-								globalAuth.logout();
-							}}
-						>
-							Log out
-						</button>
+						<p>Logged in with user: {auth.email}</p>
 					</div>
 				) : null}
-				<StatusConsumer>
-					{globalStatus => {
-						return globalStatus ? (
-							<p className="globalStatus">{globalStatus.message}</p>
-						) : null;
-					}}
-				</StatusConsumer>
+				{globalMessaging.message ? (
+					<p className="globalStatus">{globalMessaging.message}</p>
+				) : null}
 				<h1 className={'h1'}>Next.js, Typescript and JWT boilerplate</h1>
 			</div>
 		</div>
 	);
 }
 
-export default GlobalAuth(Header);
+export default Header;

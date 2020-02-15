@@ -1,65 +1,56 @@
-import React, { Component } from 'react';
-import { IGlobalAuth } from '../types/global.types';
+import React, { useContext, useEffect, useReducer } from 'react';
 
-import AuthService from './auth.service';
+import { IAuthInfo } from '../types/auth.types';
 
-const AuthCtx = React.createContext<IGlobalAuth | null>(null);
+export const AuthStateContext = React.createContext({});
 
-class AuthProvider extends Component {
-	state = {
-		isLoggedIn: false,
-		email: null
-	};
+const initialState: IAuthInfo = { email: '' };
 
-	componentDidMount() {
-		// localstorage only exists on client side, so only update here
-		// this causes the user info to only be retrieved when the component is
-		// mounted, so there's a slight delay with the info showing
-		this.setState({
-			isLoggedIn: JSON.parse(localStorage.getItem('isLoggedIn') || ''),
-			email: localStorage.getItem('email')
-		});
-	}
-
-	render() {
-		return (
-			<AuthCtx.Provider
-				value={{
-					isLoggedIn: this.state.isLoggedIn,
-					email: this.state.email,
-					addUserDetails: user => {
-						this.setState(
-							{
-								isLoggedIn: true,
-								email: user.email
-							},
-							() => {
-								if (localStorage) {
-									localStorage.setItem('isLoggedIn', JSON.stringify('true'));
-									localStorage.setItem('email', user.email);
-								}
-							}
-						);
-					},
-					logout: () => {
-						this.setState(
-							{
-								isLoggedIn: false,
-								email: null
-							},
-							() => {
-								AuthService.logout();
-								localStorage.removeItem('isLoggedIn');
-								localStorage.removeItem('email');
-							}
-						);
-					}
-				}}
-			>
-				{this.props.children}
-			</AuthCtx.Provider>
-		);
-	}
+enum ActionType {
+	SetDetails = 'setAuthDetails',
+	RemoveDetails = 'removeAuthDetails'
 }
-export default AuthProvider;
-export const AuthConsumer = AuthCtx.Consumer;
+
+interface IAction {
+	type: ActionType;
+	payload: IAuthInfo;
+}
+
+const reducer: React.Reducer<{}, IAction> = (state, action) => {
+	switch (action.type) {
+		case ActionType.SetDetails:
+			return {
+				email: action.payload.email
+			};
+		case ActionType.RemoveDetails:
+			return {
+				email: initialState.email
+			};
+		default:
+			throw new Error(`Unhandled action type: ${action.type}`);
+	}
+};
+
+export const AuthProvider = ({ children }: any) => {
+	let localState = null;
+	if (typeof localStorage !== 'undefined' && localStorage.getItem('userInfo')) {
+		localState = JSON.parse(localStorage.getItem('userInfo') || '');
+	}
+	const [state, dispatch] = useReducer(reducer, localState || initialState);
+
+	if (typeof localStorage !== 'undefined') {
+		useEffect(() => {
+			localStorage.setItem('userInfo', JSON.stringify(state));
+		}, [state]);
+	}
+	return (
+		<AuthStateContext.Provider value={[state, dispatch]}>
+			{children}
+		</AuthStateContext.Provider>
+	);
+};
+
+// useContext hook - export here to keep code for global auth state
+// together in this file, allowing user info to be accessed and updated
+// in any functional component using the hook
+export const useAuth: any = () => useContext(AuthStateContext);

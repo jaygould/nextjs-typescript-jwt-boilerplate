@@ -1,26 +1,23 @@
-import '../global.scss';
-const css = require('./index.scss');
-
 import { Field, Form, Formik, FormikActions } from 'formik';
 import Link from 'next/link';
 import Router from 'next/router';
 import * as React from 'react';
 
-import GlobalAuth from '../../components/HocGlobalAuth';
-import GlobalStatus from '../../components/HocGlobalStatus';
 import PageContent from '../../components/PageContent';
 
-import authService from '../../services/auth.service';
-import { ILoginIn } from '../../types/auth.types';
-import { IGlobalAuth, IGlobalStatus } from '../../types/global.types';
+import { useAuth } from '../../services/Auth.context';
+import FetchService from '../../services/Fetch.service';
+import { useGlobalMessaging } from '../../services/GlobalMessaging.context';
+import TokenService from '../../services/Token.service';
 
-interface IProps {
-	globalStatus: IGlobalStatus;
-	globalAuth: IGlobalAuth;
-}
+import { ILoginIn } from '../../types/auth.types';
+
+interface IProps {}
 
 function Home(props: IProps) {
-	const { globalStatus, globalAuth } = props;
+	const [messageState, messageDispatch] = useGlobalMessaging();
+	const [authState, authDispatch] = useAuth();
+
 	return (
 		<PageContent>
 			<div>
@@ -33,17 +30,36 @@ function Home(props: IProps) {
 						values: ILoginIn,
 						{ setSubmitting }: FormikActions<ILoginIn>
 					) => {
-						authService
-							.loginUser({ email: values.email, password: values.password })
-							.then(resp => {
+						FetchService.isofetch(
+							'/auth/login',
+							{
+								email: values.email,
+								password: values.password
+							},
+							'POST'
+						)
+							.then((res: any) => {
 								setSubmitting(false);
-								if (resp.success) {
-									authService.saveTokens(resp.authToken).then(() => {
-										globalAuth.addUserDetails({ email: values.email });
-										Router.push('/dashboard');
+								if (res.success) {
+									// save token in cookie for subsequent requests
+									const tokenService = new TokenService();
+									tokenService.saveToken(res.authToken);
+
+									authDispatch({
+										type: 'setAuthDetails',
+										payload: {
+											email: res.email
+										}
 									});
+
+									Router.push('/dashboard');
 								} else {
-									globalStatus.addMessage(resp.message);
+									messageDispatch({
+										type: 'setMessage',
+										payload: {
+											message: res.message
+										}
+									});
 								}
 							})
 							.catch();
@@ -86,14 +102,4 @@ function Home(props: IProps) {
 	);
 }
 
-Home.getInitialProps = async ({ Component, router, ctx }: any) => {
-	let pageProps = {};
-
-	if (Component.getInitialProps) {
-		pageProps = await Component.getInitialProps(ctx);
-	}
-
-	return { pageProps };
-};
-
-export default GlobalAuth(GlobalStatus(Home));
+export default Home;

@@ -1,4 +1,4 @@
-const css = require('./PageContent.style.scss');
+import css from './PageContent.style.css';
 
 import Header from './Head';
 

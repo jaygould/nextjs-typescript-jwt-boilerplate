@@ -1,11 +1,35 @@
 import fetch from 'isomorphic-unfetch';
-import config from '../config';
+
+import Cookies from 'universal-cookie';
 
 class FetchService {
 	public isofetch(url: string, data: object, type: string): Promise<any> {
-		return fetch(`${config.apiUrl}${url}`, {
+		return fetch(`${process.env.API_URL}${url}`, {
 			body: JSON.stringify({ ...data }),
-			headers: config.configHeaders,
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json'
+			},
+			method: type
+		})
+			.then((response: Response) => response.json())
+			.then(this.handleErrors)
+			.catch(error => {
+				throw error;
+			});
+	}
+
+	public isofetchAuthed(url: string, data: object, type: string): Promise<any> {
+		const cookies = new Cookies();
+		const token = cookies.get('token');
+
+		return fetch(`${process.env.API_URL}${url}`, {
+			body: JSON.stringify({ ...data }),
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + token
+			},
 			method: type
 		})
 			.then((response: Response) => response.json())
