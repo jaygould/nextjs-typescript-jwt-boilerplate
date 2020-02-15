@@ -70,7 +70,7 @@ router.post('/login', (req, res) => {
 });
 
 router.post('/validate', (req, res) => {
-	const authToken = req.body.authToken;
+	const authToken = req.body.token;
 	if (!authToken) {
 		return errors.errorHandler(res, 'No auth token.', null);
 	}
