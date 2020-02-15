@@ -23,9 +23,11 @@ if (config.use_env_variable) {
 fs
 	.readdirSync(__dirname)
 	.filter((file: any) => {
-		return env === 'production'
-			? file.slice(-3) === '.js'
-			: file.slice(-3) === '.ts';
+		return (
+			file.indexOf('.') !== 0 &&
+			file !== basename &&
+			(env === 'production' ? file.slice(-3) === '.js' : file.slice(-3) === '.ts')
+		);
 	})
 	.forEach((file: any) => {
 		const model = sequelize.import(path.join(__dirname, file));
