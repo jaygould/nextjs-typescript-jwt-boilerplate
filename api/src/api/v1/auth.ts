@@ -49,7 +49,8 @@ router.post('/login', (req, res) => {
 				tokens => {
 					return {
 						authToken: tokens[0],
-						refreshToken: tokens[1]
+						refreshToken: tokens[1],
+						email: user.email
 					};
 				}
 			);
@@ -60,7 +61,8 @@ router.post('/login', (req, res) => {
 				res.send({
 					success: true,
 					authToken: user.authToken,
-					refreshToken: user.refreshToken
+					refreshToken: user.refreshToken,
+					email: user.email
 				})
 			);
 		})
