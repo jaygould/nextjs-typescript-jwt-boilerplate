@@ -1,6 +1,6 @@
 # Next.js with Typescript and JWT authentication boilerplate
 
-I have written a blog post about this starter project and explained some of the key features and challenges I overcame while developing it, so [check it out]() if you're interested.
+I have written a blog post about this starter project and explained some of the key features and challenges faced while developing it, so [check it out](https://jaygould.co.uk/2020-02-15-nextjs-auth-jwt-context-hooks/) if you're interested.
 
 ## Structure
 
@@ -64,11 +64,7 @@ Run the Node API in production:
 
 As the app is server side rendered using Next.js, we get the benefit of having routes protected against unauthorized users in a different way than a normal React application. In the case of a simple React app using Create React App, the whole app is sent down to the browser at the first request. On the other hand, Next provides automatic code splitting and can protect logged-in routes from being accessed by users with invalid JWT's. 
 
-The code for this is in `client/ui/pages/_app.tsx` and leverages the power of Next's `getInitialProps()` lifecycle method to verify the user whether they are on the client or the server side. This is possible because `getInitialProps()` is executed on the client and server side. 
-
-This `client/ui/pages/_app.tsx` file is key to structuring which pages are restricted to registered users.
-
-**TODO: create a config section to handle routing in order to tidy up and automate the `_app.tsx` page.**
+The code for this is in `client/src/services/Token.service` and leverages the power of Next's `getInitialProps()` lifecycle method to verify the user's token whether they are on the client or the server side. This is possible because `getInitialProps()` is executed on the client and server side. 
 
 ## Database migrations and seeding 
 
