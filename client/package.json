@@ -2,7 +2,7 @@
   "scripts": {
     "dev": "ts-node server.ts",
     "build": "next build",
-    "start": "NODE_ENV=production && next build ./ui && next start ./ui",
+    "start": "NODE_ENV=production && next build ./src && next start ./src",
     "test": "jest"
   },
   "dependencies": {

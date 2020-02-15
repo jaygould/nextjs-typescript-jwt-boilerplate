@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const next = require('next');
 
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev, dir: './ui' });
+const app = next({ dev, dir: './src' });
 const handle = app.getRequestHandler();
 
 app
