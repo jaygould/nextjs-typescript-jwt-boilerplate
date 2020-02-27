@@ -1,6 +1,6 @@
 # Next.js with Typescript and JWT authentication boilerplate
 
-I have written a blog post about this starter project and explained some of the key features and challenges faced while developing it, so [check it out](https://jaygould.co.uk/2020-02-15-nextjs-auth-jwt-context-hooks/) if you're interested.
+I have written a blog post about this starter project and explained some of the key features and challenges faced while developing it, so [check it out](https://jaygould.co.uk/2020-01-31-nextjs-auth-jwt-context-hooks/) if you're interested.
 
 ## Structure
 
