@@ -1,4 +1,4 @@
-import css from './PageContent.style.css';
+import css from './PageContent.module.css';
 
 import Header from './Head';
 

@@ -27,7 +27,7 @@
     "express-status-monitor": "1.0.0",
     "http": "0.0.0",
     "https": "1.0.0",
-    "jimp": "^0.6.0",
+    "jimp": "^0.13.0",
     "jsonwebtoken": "8.2.1",
     "lodash": "^4.17.15",
     "lusca": "1.5.1",
