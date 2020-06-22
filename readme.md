@@ -13,7 +13,9 @@ The Next app doesn't have an associated database, as all data is handled on the 
 
 ## Installation (with Docker)
 
-Docker Compose can be used to run the boilerplate for development, allowing the automatic setup of dev environment and database structure. Ensure Docker is installed, and run Docker Compose from the top level directory of the repo:
+1. Change the name of `api/.env.sample` file to `api/.env`, and `client/.env.sample` to `client/.env`.
+
+2. Docker Compose can be used to run the boilerplate for development, allowing the automatic setup of dev environment and database structure. Ensure Docker is installed, and run Docker Compose from the top level directory of the repo:
 
 `docker-compose up`
 
