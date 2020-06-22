@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "ts-node server.ts",
+    "dev": "ts-node --project ./src/tsconfig.server.json ./src/server.ts",
     "build": "next build",
     "start": "NODE_ENV=production && next build ./src && next start ./src",
     "test": "jest"
@@ -8,7 +8,7 @@
   "dependencies": {
     "@types/enzyme": "^3.9.1",
     "@types/enzyme-adapter-react-16": "^1.0.5",
-    "@types/express": "^4.16.1",
+    "@types/express": "^4.17.6",
     "@types/faker": "^4.1.5",
     "@types/jest": "^24.0.11",
     "@types/jsonwebtoken": "^8.3.2",
@@ -18,7 +18,6 @@
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
-    "bcrypt": "^3.0.5",
     "body-parser": "^1.18.3",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
@@ -35,7 +34,6 @@
     "react-dom": "^16.8.4",
     "sequelize": "^5.21.4",
     "sequelize-cli": "^5.5.1",
-    "typescript": "^3.3.3333",
     "universal-cookie": "^3.1.0"
   },
   "devDependencies": {
@@ -46,10 +44,11 @@
     "jest": "^24.5.0",
     "jest-cli": "^24.5.0",
     "prettier": "^1.16.4",
-    "ts-node": "^8.0.3",
+    "ts-node": "^8.10.2",
     "tslint": "^5.14.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
-    "tslint-react": "^3.6.0"
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.9.5"
   }
 }

@@ -1,4 +1,4 @@
-import css from './index.css';
+import css from './index.module.css';
 
 import { Field, Form, Formik, FormikActions } from 'formik';
 import * as React from 'react';

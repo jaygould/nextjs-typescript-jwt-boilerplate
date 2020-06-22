@@ -20,7 +20,7 @@ const authApi = require('./api/v1/auth');
 const app: express.Application = express();
 
 // Express configuration
-app.set('port', process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 1138);
+app.set('port', process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 3001);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(compression());

@@ -1,4 +1,4 @@
-import css from './index.css';
+import css from './index.module.css';
 
 import { NextPageContext } from 'next';
 import * as React from 'react';

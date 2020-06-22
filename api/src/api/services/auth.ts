@@ -60,7 +60,7 @@ const createRefreshToken = (userEmail: string) => {
 const validateRefreshToken = (refreshToken: string) => {
 	if (refreshToken != '') {
 		return new Promise((res, rej) => {
-			jwt.verify(refreshToken, authSecret, (err: Error) => {
+			jwt.verify(refreshToken, authSecret, (err: any) => {
 				if (err) {
 					rej({
 						code: 'refreshExpired',
@@ -84,7 +84,7 @@ const validateRefreshToken = (refreshToken: string) => {
 
 const validateAuthToken = (authToken: string) => {
 	return new Promise((res, rej) => {
-		jwt.verify(authToken, authSecret, (err: Error) => {
+		jwt.verify(authToken, authSecret, (err: any) => {
 			if (err) {
 				rej();
 			} else {
