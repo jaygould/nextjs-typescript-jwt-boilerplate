@@ -11,7 +11,13 @@ This project has two separate sections:
 
 The Next app doesn't have an associated database, as all data is handled on the Node API. This is the preferred way to develop an application according to many (including a core maintainer or Next.js as mentioned in a recent [Shop Talk Show episode](https://shoptalkshow.com/episodes/354/)).
 
-## Installation
+## Installation (with Docker)
+
+Docker Compose can be used to run the boilerplate for development, allowing the automatic setup of dev environment and database structure. Ensure Docker is installed, and run Docker Compose from the top level directory of the repo:
+
+`docker-compose up`
+
+## Installation (manual)
 
 Clone the repository:
 
@@ -36,11 +42,25 @@ Which ever way you decide to create a database, be sure to update the environmen
 
 If you'd rather not use Postgres, you could easily swap it out for MySQL, MSSQL or MariaDB. That's one of the advantages of Sequelize :). Just go to `api/db/config.ts` and update the `dialect` property from `postgres` to any database from the [Sequelize docs](http://docs.sequelizejs.com/manual/getting-started.html).
 
-## Running the project
+### Database migrations and seeding 
+
+In order to create new database tables, you must create a migration file in the `./src/db/migrations` directory. Creating seeder files are similar and must be added in the `./src/db/seeder` directory.
+
+As Sequelize is only compatible with Javascript and not Typescript files the usual Sequelize commands for processing migration and seeder files will not work. Instead, I have created a script to compile the database files to JS, run the sequelize migrate and/or seed command, and then delete the temporarily compiled files.
+
+To migrate all files:
+
+`npm run migrate-db`
+
+To seed all files: 
+
+`npm run seed-db`
+
+### Running the project
 
 In dev and production, the front end is set to run on port :3000, and the back end on :1138, but you can change these in the `server.ts` files. In dev mode, both projects watch for changes and refresh automatically.
 
-### Running locally for development
+#### Running locally for development
 
 To run the Next.js app locally:
 
@@ -50,7 +70,7 @@ Run the Node API locally:
 
 `cd api && npm run dev`
 
-### Running in production
+#### Running in production
 
 To run the Next.js app in production:
 
@@ -65,20 +85,6 @@ Run the Node API in production:
 As the app is server side rendered using Next.js, we get the benefit of having routes protected against unauthorized users in a different way than a normal React application. In the case of a simple React app using Create React App, the whole app is sent down to the browser at the first request. On the other hand, Next provides automatic code splitting and can protect logged-in routes from being accessed by users with invalid JWT's. 
 
 The code for this is in `client/src/services/Token.service` and leverages the power of Next's `getInitialProps()` lifecycle method to verify the user's token whether they are on the client or the server side. This is possible because `getInitialProps()` is executed on the client and server side. 
-
-## Database migrations and seeding 
-
-In order to create new database tables, you must create a migration file in the `./src/db/migrations` directory. Creating seeder files are similar and must be added in the `./src/db/seeder` directory.
-
-As Sequelize is only compatible with Javascript and not Typescript files the usual Sequelize commands for processing migration and seeder files will not work. Instead, I have created a script to compile the database files to JS, run the sequelize migrate and/or seed command, and then delete the temporarily compiled files.
-
-To migrate all files:
-
-`npm run migrate-db`
-
-To seed all files: 
-
-`npm run seed-db`
 
 ## Testing
 
