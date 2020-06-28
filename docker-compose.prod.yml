@@ -1,0 +1,18 @@
+version: "3"
+services:
+  client_dev:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.prod
+    command: sh -c "npm run start"
+    volumes:
+      - ./client:/home/app/client
+      - /home/app/client/node_modules
+  api_dev:
+    build:
+      context: ./api
+      dockerfile: Dockerfile.prod
+    command: sh -c "npm run migrate-db && npm run prod"
+    volumes:
+      - ./api:/home/app/api
+      - /home/app/api/node_modules
