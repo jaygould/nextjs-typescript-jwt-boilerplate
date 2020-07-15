@@ -1,6 +1,6 @@
 export default {
-	configHeaders: {
-		Accept: 'application/json',
-		'Content-Type': 'application/json'
-	}
+  configHeaders: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  }
 };

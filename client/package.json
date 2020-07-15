@@ -3,7 +3,9 @@
     "dev": "ts-node --project ./src/tsconfig.server.json ./src/server.ts",
     "build": "next build",
     "start": "NODE_ENV=production && next build ./src && next start ./src",
-    "test": "jest"
+    "test": "jest --detectOpenHandles",
+    "prettier": "prettier --write '**/*.{ts,js,css,html,json}'",
+    "linter": "tslint '**/*.{ts,js}'"
   },
   "dependencies": {
     "@types/enzyme": "^3.9.1",

@@ -1,3 +1,3 @@
 module.exports = {
-	authSecret: 'mysupersecret'
+  authSecret: 'mysupersecret'
 };

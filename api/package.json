@@ -4,7 +4,9 @@
     "migrate-db": "cd ./src/db && tsc && cd ./../../db-build && sequelize db:migrate && cd ../ && rimraf ./db-build",
     "seed-db": "cd ./src/db && tsc && cd ./../../db-build && sequelize db:seed:all && cd ../ && rimraf ./db-build",
     "prod": "tsc && NODE_ENV=production node ./build/src/server.js",
-    "test": "jest --detectOpenHandles"
+    "test": "jest --detectOpenHandles",
+    "prettier": "prettier --write '**/*.{ts,js,css,html,json}'",
+    "linter": "tslint '**/*.{ts,js,css}'"
   },
   "dependencies": {
     "@types/bcrypt": "^3.0.0",

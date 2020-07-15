@@ -1,15 +1,15 @@
 import { NextPageContext } from 'next';
 
 export interface IGlobalStatus {
-	message: string;
+  message: string;
 }
 
 export interface IAppContext {
-	Component: any;
-	ctx: NextPageContext;
+  Component: any;
+  ctx: NextPageContext;
 }
 
 export interface IRedirectOptions {
-	ctx: NextPageContext;
-	status: number;
+  ctx: NextPageContext;
+  status: number;
 }

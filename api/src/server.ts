@@ -31,9 +31,7 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors());
 app.use(lusca.xframe('SAMEORIGIN'));
 app.use(lusca.xssProtection(true));
-app.use(
-	express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 })
-);
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 
 // Error handler
 app.use(errorHandler());
@@ -42,13 +40,13 @@ app.use(errorHandler());
 app.use('/api/v1/auth', authApi);
 
 const server = app.listen(app.get('port'), () => {
-	console.log(
-		'%s App is running at http://localhost:%d in %s mode',
-		chalk.green('✓'),
-		app.get('port'),
-		app.get('env')
-	);
-	console.log('  Press CTRL-C to stop\n');
+  console.log(
+    '%s App is running at http://localhost:%d in %s mode',
+    chalk.green('✓'),
+    app.get('port'),
+    app.get('env')
+  );
+  console.log('  Press CTRL-C to stop\n');
 });
 
 // Web sockets setup

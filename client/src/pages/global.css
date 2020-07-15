@@ -1,12 +1,12 @@
-body{
+body {
   border: 0px;
   margin: 0px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-h1{
-  color: white
+h1 {
+  color: white;
 }
-label{
+label {
   width: 300px;
   display: block;
   margin-bottom: 5px;
