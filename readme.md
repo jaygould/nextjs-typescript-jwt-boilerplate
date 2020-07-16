@@ -17,10 +17,10 @@ The Next app doesn't have an associated database, as all data is handled on the 
 
 2. Docker Compose can be used to run the boilerplate for development, allowing the automatic setup of dev environment and database structure. Ensure Docker is installed, and run Docker Compose from the top level directory of the repo:
 
-Development: run `docker-compose build --no-cache` and then `docker-compose up`
-Development (optional): run `npm install` on the host machine to install dependencies for Typescript definitions
+* Development: run `docker-compose build --no-cache` and then `docker-compose up`
+* Development (optional): run `npm install` on the host machine to install dependencies for Typescript definitions
 
-Production: `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d`
+* Production: `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d`
 
 ## Installation (manual, no Docker)
 
