@@ -17,10 +17,12 @@ The Next app doesn't have an associated database, as all data is handled on the 
 
 2. Docker Compose can be used to run the boilerplate for development, allowing the automatic setup of dev environment and database structure. Ensure Docker is installed, and run Docker Compose from the top level directory of the repo:
 
-Development: `docker-compose up`
+Development: run `docker-compose build --no-cache` and then `docker-compose up`
+Development (optional): run `npm install` on the host machine to install dependencies for Typescript definitions
+
 Production: `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d`
 
-## Installation (manual)
+## Installation (manual, no Docker)
 
 Clone the repository:
 
@@ -34,7 +36,7 @@ Install dependencies for the back end:
 
 `cd api && npm i`
 
-### Setting up the database
+### Setting up the database (manual, no Docker)
 
 This project uses a PostgreSQL database with the use of Sequelize - a powerful ORM which makes working with Postgres very simple. You can either set up a local Postgres database by installing Postgres on your machine and following [this link](https://www.codementor.io/engineerapart/getting-started-with-postgresql-on-mac-osx-are8jcopb) for a great guide, or you can create a free account and remote database on something like Heroku.
 
@@ -45,7 +47,7 @@ Which ever way you decide to create a database, be sure to update the environmen
 
 If you'd rather not use Postgres, you could easily swap it out for MySQL, MSSQL or MariaDB. That's one of the advantages of Sequelize :). Just go to `api/db/config.ts` and update the `dialect` property from `postgres` to any database from the [Sequelize docs](http://docs.sequelizejs.com/manual/getting-started.html).
 
-### Database migrations and seeding 
+### Database migrations and seeding (manual, no Docker)
 
 In order to create new database tables, you must create a migration file in the `./src/db/migrations` directory. Creating seeder files are similar and must be added in the `./src/db/seeder` directory.
 
@@ -59,11 +61,11 @@ To seed all files:
 
 `npm run seed-db`
 
-### Running the project
+### Running the project (manual, no Docker)
 
 In dev and production, the front end is set to run on port :3000, and the back end on :1138, but you can change these in the `server.ts` files. In dev mode, both projects watch for changes and refresh automatically.
 
-#### Running locally for development
+#### Running locally for development (manual, no Docker)
 
 To run the Next.js app locally:
 
@@ -73,7 +75,7 @@ Run the Node API locally:
 
 `cd api && npm run dev`
 
-#### Running in production
+#### Running in production (manual, no Docker)
 
 To run the Next.js app in production:
 

@@ -2,21 +2,23 @@ version: "3"
 services:
   client_dev:
     build: ./client
-    command: sh -c "echo 'Installing dependencies...' && npm install && npm run dev"
+    command: sh -c "npm run dev"
     container_name: pc-client-dev
     ports:
-      - 8000:3000
+      - 3000:3000
     volumes:
       - ./client:/home/app/client
+      - /home/app/client/node_modules
     working_dir: /home/app/client
   api_dev:
     build: ./api
-    command: sh -c "echo 'Installing dependencies...' && npm install && npm run migrate-db && npm run dev"
+    command: sh -c "npm run migrate-db && npm run dev"
     container_name: pc-api-dev
     ports:
-      - 8001:3001
+      - 3001:3001
     volumes:
       - ./api:/home/app/api
+      - /home/app/api/node_modules
     working_dir: /home/app/api
     restart: on-failure
     depends_on:
