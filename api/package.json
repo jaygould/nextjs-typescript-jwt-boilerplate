@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts",
+    "dev": "ts-node-dev --respawn --transpile-only ./src/server.ts",
     "migrate-db": "cd ./src/db && tsc && cd ./../../db-build && sequelize db:migrate && cd ../ && rimraf ./db-build",
     "seed-db": "cd ./src/db && tsc && cd ./../../db-build && sequelize db:seed:all && cd ../ && rimraf ./db-build",
     "prod": "tsc && NODE_ENV=production node ./build/src/server.js",
