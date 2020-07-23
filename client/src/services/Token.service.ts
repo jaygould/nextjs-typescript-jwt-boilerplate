@@ -12,6 +12,12 @@ class TokenService {
     return Promise.resolve();
   }
 
+  public deleteToken() {
+    const cookies = new Cookies();
+    cookies.remove('token', { path: '/' });
+    return;
+  }
+
   public checkAuthToken(token: string, ssr: boolean): Promise<any> {
     return FetchService.isofetchAuthed(`/auth/validate`, { token }, 'POST', ssr);
   }
@@ -31,7 +37,8 @@ class TokenService {
     const response = await this.checkAuthToken(token, ssr);
     if (!response.success) {
       const navService = new NavService();
-      navService.redirectUser('/', ctx);
+      this.deleteToken();
+      navService.redirectUser('/?l=t', ctx);
     }
   }
 }
