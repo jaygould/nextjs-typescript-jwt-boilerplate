@@ -14,16 +14,30 @@ class FetchService {
     })
       .then((response: Response) => response.json())
       .then(this.handleErrors)
-      .catch(error => {
+      .catch((error) => {
         throw error;
       });
   }
 
-  public isofetchAuthed(url: string, data: object, type: string): Promise<any> {
+  /**
+   * This request could be initiated on client or server side, so a check must be done so
+   * we can know whether to use the Docker local instance (server side request) or the
+   * public facing request (client side)
+   * @param url
+   * @param data
+   * @param type
+   * @param ssr
+   */
+  public isofetchAuthed(
+    url: string,
+    data: object,
+    type: string,
+    ssr: boolean = false
+  ): Promise<any> {
     const cookies = new Cookies();
     const token = cookies.get('token');
 
-    return fetch(`${process.env.API_URL}${url}`, {
+    return fetch(`${ssr ? process.env.NETWORK_API_URL : process.env.API_URL}${url}`, {
       body: JSON.stringify({ ...data }),
       headers: {
         Accept: 'application/json',
@@ -34,7 +48,7 @@ class FetchService {
     })
       .then((response: Response) => response.json())
       .then(this.handleErrors)
-      .catch(error => {
+      .catch((error) => {
         throw error;
       });
   }

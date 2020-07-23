@@ -10,6 +10,9 @@ services:
       - ./client:/home/app/client
       - /home/app/client/node_modules
     working_dir: /home/app/client
+    environment:
+      API_URL: http://localhost:3001/v1
+      NETWORK_API_URL: http://api_dev:3001/v1
   api_dev:
     build: ./api
     command: sh -c "npm run migrate-db && npm run dev"

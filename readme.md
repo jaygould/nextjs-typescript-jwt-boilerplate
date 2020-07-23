@@ -1,8 +1,21 @@
-# Next.js with Typescript and JWT authentication boilerplate
+# Next.js with Typescript and JWT authentication boilerplate V2
 
 I have written a blog post about this starter project and explained some of the key features and challenges faced while developing it, so [check it out](https://jaygould.co.uk/2020-01-31-nextjs-auth-jwt-context-hooks/) if you're interested.
 
-## Structure
+> V1 of this repo is still available in the [V1 branch](https://github.com/jaygould/nextjs-typescript-jwt-boilerplate/tree/v1), but the project is now updated to use a cleaned and organized approach.
+
+## Used tech :computer:
+
+* Docker Compose
+* Typescript
+* OO approach
+* Next JS and React front end
+* React Context API and hooks
+* Node with Express back end
+* JWT authentication
+* Sequelize database using PostgreSQL
+
+## Structure :triangular_ruler:
 
 This project has two separate sections:
 
@@ -11,7 +24,7 @@ This project has two separate sections:
 
 The Next app doesn't have an associated database, as all data is handled on the Node API. This is the preferred way to develop an application according to many (including a core maintainer or Next.js as mentioned in a recent [Shop Talk Show episode](https://shoptalkshow.com/episodes/354/)).
 
-## Installation (with Docker)
+## Installation (with Docker) :rocket:
 
 1. Change the name of `api/.env.sample` file to `api/.env`, and `client/.env.sample` to `client/.env`.
 
@@ -22,7 +35,7 @@ The Next app doesn't have an associated database, as all data is handled on the 
 
 * Production: `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d`
 
-## Installation (manual, no Docker)
+## Installation (manual, no Docker) 
 
 Clone the repository:
 

@@ -1,5 +1,5 @@
 module.exports = (sequelize: any, DataTypes: any) => {
-  const loginActivity = sequelize.define(
+  const login_activity = sequelize.define(
     'login_activity',
     {
       userId: DataTypes.STRING,
@@ -7,8 +7,8 @@ module.exports = (sequelize: any, DataTypes: any) => {
     },
     {}
   );
-  loginActivity.associate = (models: any) => {
+  login_activity.associate = (models: any) => {
     // associations can be defined here
   };
-  return loginActivity;
+  return login_activity;
 };
