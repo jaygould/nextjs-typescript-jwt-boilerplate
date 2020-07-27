@@ -12,7 +12,7 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile.prod
-    command: sh -c "npm run migrate-db && npm run prod"
+    command: sh -c "npm run db-migrate && npm run run-prod"
     volumes:
       - ./api:/home/app/api
       - /home/app/api/node_modules

@@ -44,7 +44,7 @@ class Token {
     }
 
     return new Promise((res, rej) => {
-      jwt.verify(refreshToken, config.authSecret, async (err: Error) => {
+      jwt.verify(refreshToken, config.authSecret, async (err: any) => {
         if (err) {
           rej({
             code: 'refreshExpired',
@@ -64,7 +64,7 @@ class Token {
 
   validateAuthToken(authToken: string) {
     return new Promise((res, rej) => {
-      jwt.verify(authToken, config.authSecret, (err: Error) => {
+      jwt.verify(authToken, config.authSecret, (err: any) => {
         if (err) {
           rej();
         } else {

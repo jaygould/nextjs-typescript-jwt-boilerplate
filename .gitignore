@@ -3,5 +3,5 @@ node_modules/
 .env
 build/
 db/data/
-
+db/data-test/
 .DS_Store

@@ -4,6 +4,7 @@ const router = Router();
 import * as errors from '../helpers/error';
 import { Authentication } from '../services/Authentication';
 import { IUser } from '../types/user.types';
+import { verifyToken } from '../middleware/auth';
 
 router.post('/register', (req, res) => {
   const auth = new Authentication();
@@ -67,6 +68,14 @@ router.post('/validate', (req, res) => {
         success: false
       });
     });
+});
+
+router.use(verifyToken());
+
+router.post('/protected', (req, res) => {
+  res.send({
+    success: true
+  });
 });
 
 module.exports = router;

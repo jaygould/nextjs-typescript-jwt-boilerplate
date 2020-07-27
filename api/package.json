@@ -1,12 +1,12 @@
 {
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only ./src/server.ts",
+    "db-migrate": "cd ./src/db && tsc && cd ./../../db-build && sequelize db:migrate && cd ../ && rimraf ./db-build",
+    "db-seed": "cd ./src/db && tsc && cd ./../../db-build && sequelize db:seed:all && cd ../ && rimraf ./db-build",
     "linter": "tslint '**/*.{ts,js,css}'",
-    "migrate-db": "cd ./src/db && tsc && cd ./../../db-build && sequelize db:migrate && cd ../ && rimraf ./db-build",
     "prettier": "prettier --write '**/*.{ts,js,css,html,json}' && npx sort-package-json",
-    "prod": "tsc && NODE_ENV=production node ./build/src/server.js",
-    "seed-db": "cd ./src/db && tsc && cd ./../../db-build && sequelize db:seed:all && cd ../ && rimraf ./db-build",
-    "test": "jest --detectOpenHandles",
+    "run-dev": "ts-node-dev --respawn --transpile-only ./src/server.ts",
+    "run-prod": "NODE_ENV=production tsc && node ./build/src/server.js",
+    "test": "NODE_ENV=test npm run db-migrate && jest --detectOpenHandles",
     "update-all": "npx npm-check-updates -u"
   },
   "dependencies": {
@@ -18,6 +18,7 @@
     "@types/jsonwebtoken": "^8.5.0",
     "@types/node": "^14.0.24",
     "@types/sequelize": "^4.28.9",
+    "@types/supertest": "^2.0.10",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "chalk": "4.1.0",
@@ -46,6 +47,7 @@
     "jest-cli": "^26.1.0",
     "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
+    "supertest": "^4.0.2",
     "ts-jest": "^26.1.3",
     "ts-node-dev": "^1.0.0-pre.52",
     "tslint": "^6.1.2",

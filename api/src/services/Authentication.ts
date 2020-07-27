@@ -50,7 +50,7 @@ class Authentication {
     try {
       await this.compareHashedPassword(password, userExists.password);
     } catch (e) {
-      throw new Error(e);
+      throw e;
     }
 
     await token.createToken(userExists);
