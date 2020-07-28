@@ -1,7 +1,16 @@
+import db from '../../db/models';
+
 import * as faker from 'faker';
+
 import { Authentication } from '../Authentication';
 
 describe('test the Authentication service', () => {
+  let thisDb: any = db;
+
+  beforeAll(async () => {
+    await thisDb.sequelize.sync({ force: true });
+  });
+
   it('should successfully create a user with valid details', async () => {
     const authentication = new Authentication();
     const randomString = faker.random.alphaNumeric(10);
@@ -65,5 +74,9 @@ describe('test the Authentication service', () => {
         password: wrongPassword
       })
     ).rejects.toThrow(new Error('Your password is incorrect.'));
+  });
+
+  afterAll(async () => {
+    await db.sequelize.close();
   });
 });

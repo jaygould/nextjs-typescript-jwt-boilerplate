@@ -6,7 +6,7 @@
     "prettier": "prettier --write '**/*.{ts,js,css,html,json}' && npx sort-package-json",
     "run-dev": "ts-node-dev --respawn --transpile-only ./src/server.ts",
     "run-prod": "NODE_ENV=production tsc && node ./build/src/server.js",
-    "test": "NODE_ENV=test npm run db-migrate && jest --detectOpenHandles",
+    "test": "NODE_ENV=test jest --runInBand",
     "update-all": "npx npm-check-updates -u"
   },
   "dependencies": {

@@ -1,8 +1,17 @@
+import db from '../../db/models';
+
 import * as faker from 'faker';
-import { User } from '../User';
+
 import { Authentication } from '../Authentication';
+import { User } from '../User';
 
 describe('test the User service', () => {
+  let thisDb: any = db;
+
+  beforeAll(async () => {
+    await thisDb.sequelize.sync({ force: true });
+  });
+
   it('should return user details if a user exists', async () => {
     const authentication = new Authentication();
     const randomString = faker.random.alphaNumeric(10);
@@ -29,5 +38,9 @@ describe('test the User service', () => {
     const doesUserExist = await user.doesUserExist();
 
     expect(doesUserExist).toBeNull();
+  });
+
+  afterAll(async () => {
+    await thisDb.sequelize.close();
   });
 });

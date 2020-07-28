@@ -1,10 +1,18 @@
 const { app } = require('../../app');
+import db from '../../db/models';
+
 import * as faker from 'faker';
 import supertest from 'supertest';
 
 import { Authentication } from '../../services/Authentication';
 
 describe('test the JWT authorization middleware', () => {
+  let thisDb: any = db;
+
+  beforeAll(async () => {
+    await thisDb.sequelize.sync({ force: true });
+  });
+
   it('should succeed when accessing an authed route with a valid JWT', async () => {
     const authentication = new Authentication();
     const randomString = faker.random.alphaNumeric(10);
@@ -42,5 +50,9 @@ describe('test the JWT authorization middleware', () => {
       success: false,
       message: 'Invalid token.'
     });
+  });
+
+  afterAll(async () => {
+    await thisDb.sequelize.close();
   });
 });
