@@ -1,3 +1,20 @@
+<!-- * Update all packages to latest version and test
+* Order package json file -->
+
+<!-- - Add OO as update to existing repo and put rest on another branch -->
+<!-- * Make sure all folders and files are needed, as well as deps - npx depcheck -->
+
+<!-- - Remove Git filder and start new repo -->
+<!-- * Update dir structure and make a bit cleaner? -->
+
+- Style client a bit more and put screenshot on readme - same for other one?
+  <!-- - Updarte readme and link between the 2 repo's -->
+  <!-- * Remove models and implement DB calls within the services -->
+- Add tests using jest for API and also for clinet
+- Add badges to repo?
+- Switch out sequelize for objection - defo?
+- Finally, use this repo for base of postcode project - delete existing postcode stuff and start again
+
 # Next.js with Typescript and JWT authentication boilerplate V2
 
 I have written a blog post about this starter project and explained some of the key features and challenges faced while developing it, so [check it out](https://jaygould.co.uk/2020-01-31-nextjs-auth-jwt-context-hooks/) if you're interested.

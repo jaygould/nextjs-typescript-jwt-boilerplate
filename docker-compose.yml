@@ -11,8 +11,8 @@ services:
       - /home/app/client/node_modules
     working_dir: /home/app/client
     environment:
-      API_URL: http://localhost:3001/v1
-      NETWORK_API_URL: http://api_dev:3001/v1
+      NEXT_PUBLIC_API_URL: http://localhost:3001/v1
+      NEXT_PUBLIC_NETWORK_API_URL: http://api_dev:3001/v1
   api_dev:
     build: ./api
     command: sh -c "npm run db-migrate && npm run run-dev"

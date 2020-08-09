@@ -1,4 +1,4 @@
-import css from './Head.module.css';
+import css from './Head.module.scss';
 
 import Head from 'next/head';
 import * as React from 'react';
