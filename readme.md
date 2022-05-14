@@ -26,7 +26,7 @@ The Next app doesn't have an associated database, as all data is handled on the 
 
 ## Installation (with Docker) :rocket:
 
-1. Change the name of `api/.env.sample` file to `api/.env`, and `client/.env.sample` to `client/.env`.
+1. Change the name of `api/.env.sample` file to `api/.env`, and `client/.env.sample` to `client/.env`. (The client .env file is only needed for production, as the local version uses the environment variables from `docker-compose.yml`).
 
 2. Docker Compose can be used to run the boilerplate for development, allowing the automatic setup of dev environment and database structure. Ensure Docker is installed, and run Docker Compose from the top level directory of the repo:
 
